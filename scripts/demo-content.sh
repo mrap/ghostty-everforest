@@ -37,7 +37,7 @@ printf "  ${GRN}      ${YLW}.+++++++.${GRN}         ${CYN}Shell:${R}    zsh 5.9 
 printf "  ${GRN}     .++++++++++.        ${CYN}Theme:${R}    ${GRN}${VARIANT}${R}\n"
 printf "  ${GRN}    .++++++++++++++.     ${CYN}Editor:${R}   neovim 0.10\n"
 printf "  ${GRN}   .+++.       .+++.     ${CYN}Font:${R}     JetBrains Mono 15\n"
-printf "  ${GRN}  .+++.         .+++.    ${CYN}Source:${R}   github.com/sainnhe/everforest\n"
+printf "  ${GRN}  .+++.         .+++.    ${CYN}Source:${R}   github.com/mrap/ghostty-everforest\n"
 echo ""
 
 # ── Code snippet ─────────────────────────────────────────────────────────────
