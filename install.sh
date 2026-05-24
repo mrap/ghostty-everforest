@@ -1,18 +1,33 @@
 #!/bin/sh
 # Install Everforest themes for Ghostty.
-set -uo pipefail
+# Detects your Ghostty config dir by looking for an existing config file —
+# XDG ($XDG_CONFIG_HOME/ghostty or ~/.config/ghostty) takes precedence over
+# the macOS app-support path, since Ghostty itself prefers XDG when present.
+set -u
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 THEMES_SRC="$SCRIPT_DIR/themes"
 
-# Detect OS and set target directory
-if [ "$(uname)" = "Darwin" ]; then
-  THEMES_DIR="$HOME/Library/Application Support/com.mitchellh.ghostty/themes"
-else
-  THEMES_DIR="$HOME/.config/ghostty/themes"
+xdg_base="${XDG_CONFIG_HOME:-$HOME/.config}/ghostty"
+mac_base="$HOME/Library/Application Support/com.mitchellh.ghostty"
+
+# Precedence:
+#   1. Existing config file (XDG, then macOS) — install next to it.
+#   2. Existing config directory (XDG, then macOS).
+#   3. Default per OS: macOS → app-support; everything else → XDG.
+if   [ -f "$xdg_base/config" ];  then BASE="$xdg_base"
+elif [ -f "$mac_base/config" ];  then BASE="$mac_base"
+elif [ -d "$xdg_base" ];         then BASE="$xdg_base"
+elif [ -d "$mac_base" ];         then BASE="$mac_base"
+elif [ "$(uname)" = "Darwin" ];  then BASE="$mac_base"
+else                                  BASE="$xdg_base"
 fi
 
-echo "Installing Everforest themes to: $THEMES_DIR"
+THEMES_DIR="$BASE/themes"
+CONFIG_FILE="$BASE/config"
+
+echo "Detected Ghostty base:  $BASE"
+echo "Installing themes to:   $THEMES_DIR"
 mkdir -p "$THEMES_DIR"
 
 for theme in "$THEMES_SRC"/everforest-*; do
@@ -22,7 +37,7 @@ for theme in "$THEMES_SRC"/everforest-*; do
 done
 
 echo ""
-echo "Done. Add one of the following to your Ghostty config:"
+echo "Done. Add one of the following to $CONFIG_FILE:"
 echo ""
 echo "  theme = everforest-dark-hard"
 echo "  theme = everforest-dark-medium"
@@ -30,9 +45,3 @@ echo "  theme = everforest-dark-soft"
 echo "  theme = everforest-light-hard"
 echo "  theme = everforest-light-medium"
 echo "  theme = everforest-light-soft"
-echo ""
-if [ "$(uname)" = "Darwin" ]; then
-  echo "Config location: ~/Library/Application Support/com.mitchellh.ghostty/config"
-else
-  echo "Config location: ~/.config/ghostty/config"
-fi

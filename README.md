@@ -31,19 +31,30 @@ The script detects macOS or Linux and copies the themes into the correct Ghostty
 
 ### Option 2 — manual drop
 
-Copy any theme file from `themes/` into your Ghostty themes directory:
+Copy any theme file from `themes/` into your Ghostty themes directory — wherever your Ghostty `config` file already lives. Ghostty checks `$XDG_CONFIG_HOME/ghostty/` first (defaults to `~/.config/ghostty/`), and falls back to `~/Library/Application Support/com.mitchellh.ghostty/` on macOS.
 
-- **macOS:** `~/Library/Application Support/com.mitchellh.ghostty/themes/`
-- **Linux:** `~/.config/ghostty/themes/`
+Check yours:
 
 ```sh
-cp themes/everforest-dark-medium \
-  "~/Library/Application Support/com.mitchellh.ghostty/themes/"
+ls "${XDG_CONFIG_HOME:-$HOME/.config}/ghostty/config" \
+   "$HOME/Library/Application Support/com.mitchellh.ghostty/config" 2>/dev/null
+```
+
+Drop the theme next to it:
+
+```sh
+# XDG (Linux + many macOS users):
+mkdir -p ~/.config/ghostty/themes
+cp themes/everforest-light-medium ~/.config/ghostty/themes/
+
+# macOS app-support:
+mkdir -p ~/Library/Application\ Support/com.mitchellh.ghostty/themes
+cp themes/everforest-light-medium ~/Library/Application\ Support/com.mitchellh.ghostty/themes/
 ```
 
 ### Option 3 — Ghostty config snippet
 
-Add to your `~/.config/ghostty/config` (or `~/Library/Application Support/com.mitchellh.ghostty/config` on macOS):
+Add to your Ghostty `config` file (path depends on your setup — see Option 2):
 
 ```
 theme = everforest-dark-medium
