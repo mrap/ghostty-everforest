@@ -1,26 +1,21 @@
-# ghostty-everforest
+<h1 align="center">𝐄𝐯𝐞𝐫𝐟𝐨𝐫𝐞𝐬𝐭 𝐟𝐨𝐫 𝐆𝐡𝐨𝐬𝐭𝐭𝐲</h1>
 
-A port of [sainnhe's Everforest](https://github.com/sainnhe/everforest) colorscheme to [Ghostty](https://ghostty.org). Six variants covering dark/light × hard/medium/soft contrast levels.
+<p align="center">
+  A port of <a href="https://github.com/sainnhe/everforest">sainnhe's Everforest</a> colorscheme to <a href="https://ghostty.org">Ghostty</a>.<br/>
+  Six variants — <strong>Dark</strong> and <strong>Light</strong>, each in <strong>Hard</strong>, <strong>Medium</strong>, and <strong>Soft</strong> contrast.
+</p>
+
+|        |                                                         𝐃𝐚𝐫𝐤                                                          |                                                         𝐋𝐢𝐠𝐡𝐭                                                          |
+| :----: | :-------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: |
+|  𝐇𝐚𝐫𝐝  | <img src="screenshots/everforest-dark-hard.png" alt="everforest-dark-hard" width="420"/><br/><sub><code>everforest-dark-hard</code> · `#272e33`</sub> | <img src="screenshots/everforest-light-hard.png" alt="everforest-light-hard" width="420"/><br/><sub><code>everforest-light-hard</code> · `#fffbef`</sub> |
+| 𝐌𝐞𝐝𝐢𝐮𝐦 | <img src="screenshots/everforest-dark-medium.png" alt="everforest-dark-medium" width="420"/><br/><sub><code>everforest-dark-medium</code> · `#2d353b`</sub> | <img src="screenshots/everforest-light-medium.png" alt="everforest-light-medium" width="420"/><br/><sub><code>everforest-light-medium</code> · `#fdf6e3`</sub> |
+|  𝐒𝐨𝐟𝐭  | <img src="screenshots/everforest-dark-soft.png" alt="everforest-dark-soft" width="420"/><br/><sub><code>everforest-dark-soft</code> · `#333c43`</sub> | <img src="screenshots/everforest-light-soft.png" alt="everforest-light-soft" width="420"/><br/><sub><code>everforest-light-soft</code> · `#f3ead3`</sub> |
 
 ## About
 
 Everforest is a green-based colorscheme designed to be warm, soft, and easy on the eyes. This port faithfully maps the upstream palette to Ghostty's theme format, using sainnhe's own terminal ports (iTerm2 / Alacritty) as the canonical ANSI mapping reference.
 
 Upstream: <https://github.com/sainnhe/everforest>
-
-## Preview
-
-**Dark variants**
-
-![everforest-dark-hard](screenshots/everforest-dark-hard.png)
-![everforest-dark-medium](screenshots/everforest-dark-medium.png)
-![everforest-dark-soft](screenshots/everforest-dark-soft.png)
-
-**Light variants**
-
-![everforest-light-hard](screenshots/everforest-light-hard.png)
-![everforest-light-medium](screenshots/everforest-light-medium.png)
-![everforest-light-soft](screenshots/everforest-light-soft.png)
 
 ## Installation
 
