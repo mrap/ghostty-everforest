@@ -116,7 +116,7 @@ Show
 
 Type "bash $DEMO_SCRIPT $variant"
 Enter
-Sleep 4s
+Sleep 6s
 TAPE
 
     vhs -o "$tmp_gif" "$tape_file"
@@ -133,8 +133,17 @@ TAPE
         exit 1
     fi
 
-    # Extract last frame of the GIF as a PNG (-sseof -0 picks the last frame)
-    ffmpeg -y -i "$tmp_gif" -vf "select='eq(n,0)'" -vframes 1 "$out_png" 2>/dev/null
+    # Extract the LAST frame of the GIF as a PNG.
+    # Approach: count total frames with ffprobe, then select the final one.
+    nframes=$(ffprobe -v error -select_streams v:0 -count_frames \
+        -show_entries stream=nb_read_frames -of default=nokey=1:noprint_wrappers=1 \
+        "$tmp_gif" 2>/dev/null)
+    if [ -z "$nframes" ] || [ "$nframes" -lt 1 ]; then
+        echo "ERROR: ffprobe failed to count frames in $tmp_gif"
+        exit 1
+    fi
+    last=$((nframes - 1))
+    ffmpeg -y -i "$tmp_gif" -vf "select='eq(n,$last)'" -vframes 1 "$out_png" 2>/dev/null
     ffmpeg_exit=$?
     rm -f "$tmp_gif"
 
